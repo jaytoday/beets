@@ -4,66 +4,63 @@ MPDStats Plugin
 ``mpdstats`` is a plugin for beets that collects statistics about your listening
 habits from `MPD`_.  It collects the following information about tracks:
 
-* play_count: The number of times you *fully* listened to this track.
-* skip_count: The number of times you *skipped* this track.
-* last_played:  UNIX timestamp when you last played this track.
-* rating: A rating based on *play_count* and *skip_count*.
+* ``play_count``: The number of times you *fully* listened to this track.
+* ``skip_count``: The number of times you *skipped* this track.
+* ``last_played``:  UNIX timestamp when you last played this track.
+* ``rating``: A rating based on ``play_count`` and ``skip_count``.
 
-.. _MPD: http://mpd.wikia.com/wiki/Music_Player_Daemon_Wiki
+To gather these statistics it runs as an MPD client and watches the current state
+of MPD. This means that ``mpdstats`` needs to be running continuously for it to
+work.
+
+.. _MPD: https://www.musicpd.org/
 
 Installing Dependencies
 -----------------------
 
-This plugin requires the python-mpd library in order to talk to the MPD
+This plugin requires the python-mpd2 library in order to talk to the MPD
 server.
 
 Install the library from `pip`_, like so::
 
-    $ pip install python-mpd
+    $ pip install python-mpd2
 
-.. _pip: http://www.pip-installer.org/
+Add the ``mpdstats`` plugin to your configuration (see :ref:`using-plugins`).
 
-Configuring
------------
-
-To use it, enable it in your ``config.yaml`` by putting ``mpdstats`` on your
-``plugins`` line. Then, you'll probably want to configure the specifics of
-your MPD server. You can do that using an ``mpd:`` section in your
-``config.yaml``, which looks like this::
-
-    mpd:
-        host: localhost
-        port: 6600
-        password: seekrit
-
-If your MPD library is at another location then the beets library (e.g.,
-because one is mounted on a NFS share), you can specify the
-``music_directory`` in the config like this::
-
-    mpdstats:
-        music_directory: /PATH/TO/YOUR/FILES
-
-If you don't want the plugin to update the rating, you can disable it with::
-
-    mpdstats:
-        rating: False
-
-If you want to change the way the rating is calculated, you can set the
-``rating_mix`` option like this::
-
-    mpdstats:
-        rating_mix: 1.0
-
-For details, see below.
-
+.. _pip: https://pip.pypa.io
 
 Usage
 -----
 
-Now use the ``mpdstats`` command to fire it up::
+Use the ``mpdstats`` command to fire it up::
 
     $ beet mpdstats
 
+Configuration
+-------------
+
+To configure the plugin, make an ``mpd:`` section in your
+configuration file. The available options are:
+
+- **host**: The MPD server hostname.
+  Default: The ``$MPD_HOST`` environment variable if set,
+  falling back to ``localhost`` otherwise.
+- **port**: The MPD server port.
+  Default: The ``$MPD_PORT`` environment variable if set,
+  falling back to 6600 otherwise.
+- **password**: The MPD server password.
+  Default: None.
+- **music_directory**: If your MPD library is at a different location from the
+  beets library (e.g., because one is mounted on a NFS share), specify the path
+  here.
+- **strip_path**: If your MPD library contains local path, specify the part to remove
+  here. Combining this with **music_directory** you can mangle MPD path to match the 
+  beets library one.
+  Default: The beets library directory.
+- **rating**: Enable rating updates.
+  Default: ``yes``.
+- **rating_mix**: Tune the way rating is calculated (see below).
+  Default: 0.75.
 
 A Word on Ratings
 -----------------
@@ -107,4 +104,4 @@ Warning
 This has only been tested with MPD versions >= 0.16.  It may not work
 on older versions.  If that is the case, please report an `issue`_.
 
-.. _issue: https://github.com/sampsyo/beets/issues
+.. _issue: https://github.com/beetbox/beets/issues

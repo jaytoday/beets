@@ -2,11 +2,11 @@ FAQ
 ###
 
 Here are some answers to frequently-asked questions from IRC and elsewhere.
-Got a question that isn't answered here? Try `IRC`_, the `mailing list`_, or
+Got a question that isn't answered here? Try the `discussion board`_, or
 :ref:`filing an issue <bugs>` in the bug tracker.
 
-.. _IRC: irc://irc.freenode.net/beets
-.. _mailing list: http://groups.google.com/group/beets-users
+.. _mailing list: https://groups.google.com/group/beets-users
+.. _discussion board: https://github.com/beetbox/beets/discussions/
 
 .. contents::
     :local:
@@ -59,6 +59,12 @@ with the ``%if{}`` function to accomplish this::
     item_fields:
         multidisc: 1 if disctotal > 1 else 0
 
+This ``paths`` configuration only contains the
+``default`` key: it leaves the ``comp`` and ``singleton`` keys as their
+default values, as documented in :ref:`path-format-config`.
+To create "Disc N" directories for compilations and singletons, you will need
+to specify similar templates for those keys as well.
+
 
 .. _multidisc:
 
@@ -93,14 +99,14 @@ the tracks into a single directory to force them to be tagged together.
 
 An MBID looks like one of these:
 
--  ``http://musicbrainz.org/release/ded77dcf-7279-457e-955d-625bd3801b87``
+-  ``https://musicbrainz.org/release/ded77dcf-7279-457e-955d-625bd3801b87``
 -  ``d569deba-8c6b-4d08-8c43-d0e5a1b8c7f3``
 
 Beets can recognize either the hex-with-dashes UUID-style string or the
 full URL that contains it (as of 1.0b11).
 
 You can get these IDs by `searching on the MusicBrainz web
-site <http://musicbrainz.org/>`__ and going to a *release* page (when
+site <https://musicbrainz.org/>`__ and going to a *release* page (when
 tagging full albums) or a *recording* page (when tagging singletons).
 Then, copy the URL of the page and paste it into beets.
 
@@ -118,7 +124,7 @@ Run a command like this::
 
     pip install -U beets
 
-The ``-U`` flag tells `pip <http://www.pip-installer.org>`__ to upgrade
+The ``-U`` flag tells `pip`_ to upgrade
 beets to the latest version. If you want a specific version, you can
 specify with using ``==`` like so::
 
@@ -135,22 +141,31 @@ it's helpful to run on the "bleeding edge". To run the latest source:
 
 1. Uninstall beets. If you installed using ``pip``, you can just run
    ``pip uninstall beets``.
-2. Install from source. There are a few easy ways to do this:
+2. Install from source. Choose one of these methods:
 
-   -  Use ``pip`` to install the latest snapshot tarball: just type
-      ``pip install https://github.com/sampsyo/beets/tarball/master``.
-   -  Grab the source using Mercurial
-      (``hg clone https://bitbucket.org/adrian/beets``) or git
-      (``git clone https://github.com/sampsyo/beets.git``). Then
-      ``cd beets`` and type ``python setup.py install``.
+   -  Directly from GitHub using
+      ``python -m pip install git+https://github.com/beetbox/beets.git``
+      command. Depending on your system, you may need to use ``pip3``
+      and ``python3`` instead of ``pip`` and ``python`` respectively.
+   -  Use ``pip`` to install the latest snapshot tarball. Type:
+      ``pip install https://github.com/beetbox/beets/tarball/master``
+   -  Grab the source using git. First, clone the repository:
+      ``git clone https://github.com/beetbox/beets.git``.
+      Then, ``cd beets`` and ``python setup.py install``.
    -  Use ``pip`` to install an "editable" version of beets based on an
       automatic source checkout. For example, run
-      ``pip install -e hg+https://bitbucket.org/adrian/beets#egg=beets``
-      to clone beets from BitBucket using Mercurial and install it,
-      allowing you to modify the source in-place to try out changes.
+      ``pip install -e git+https://github.com/beetbox/beets#egg=beets``
+      to clone beets and install it, allowing you to modify the source
+      in-place to try out changes.
+   -  Combine the previous two approaches, cloning the source yourself,
+      and then installing in editable mode:
+      ``git clone https://github.com/beetbox/beets.git`` then
+      ``pip install -e beets``. This approach lets you decide where the
+      source is stored, with any changes immediately reflected in your
+      environment.
 
-More details about the beets source are available on the [[Hacking]]
-page.
+More details about the beets source are available on the :doc:`developer documentation </dev/index>`
+pages.
 
 
 .. _bugs:
@@ -158,15 +173,15 @@ page.
 …report a bug in beets?
 -----------------------
 
-We use the `issue tracker <https://github.com/sampsyo/beets/issues>`__
-on GitHub. `Enter a new issue <https://github.com/sampsyo/beets/issues/new>`__
+We use the `issue tracker <https://github.com/beetbox/beets/issues>`__
+on GitHub. `Enter a new issue <https://github.com/beetbox/beets/issues/new>`__
 there to report a bug. Please follow these guidelines when reporting an issue:
 
 -  Most importantly: if beets is crashing, please `include the
-   traceback <http://imgur.com/jacoj>`__. Tracebacks can be more
+   traceback <https://imgur.com/jacoj>`__. Tracebacks can be more
    readable if you put them in a pastebin (e.g.,
    `Gist <https://gist.github.com/>`__ or
-   `Hastebin <http://hastebin.com/>`__), especially when communicating
+   `Hastebin <https://hastebin.com/>`__), especially when communicating
    over IRC or email.
 -  Turn on beets' debug output (using the -v option: for example,
    ``beet -v import ...``) and include that with your bug report. Look
@@ -188,7 +203,44 @@ there to report a bug. Please follow these guidelines when reporting an issue:
 
 If you've never reported a bug before, Mozilla has some well-written
 `general guidelines for good bug
-reports <http://www.mozilla.org/bugs/>`__.
+reports`_.
+
+.. _general guidelines for good bug reports: https://developer.mozilla.org/en-US/docs/Mozilla/QA/Bug_writing_guidelines
+
+
+.. _find-config:
+
+…find the configuration file (config.yaml)?
+-------------------------------------------
+
+You create this file yourself; beets just reads it. See
+:doc:`/reference/config`.
+
+
+.. _special-chars:
+
+…avoid using special characters in my filenames?
+------------------------------------------------
+
+Use the ``%asciify{}`` function in your path formats. See
+:ref:`template-functions`.
+
+
+.. _move-dir:
+
+…point beets at a new music directory?
+--------------------------------------
+
+If you want to move your music from one directory to another, the best way is
+to let beets do it for you. First, edit your configuration and set the
+``directory`` setting to the new place. Then, type ``beet move`` to have beets
+move all your files.
+
+If you've already moved your music *outside* of beets, you have a few options:
+
+- Move the music back (with an ordinary ``mv``) and then use the above steps.
+- Delete your database and re-create it from the new paths using ``beet import -AWC``.
+- Resort to manually modifying the SQLite database (not recommended).
 
 
 Why does beets…
@@ -202,7 +254,7 @@ Why does beets…
 There are a number of possibilities:
 
 -  First, make sure the album is in `the MusicBrainz
-   database <http://musicbrainz.org/>`__. You
+   database <https://musicbrainz.org/>`__. You
    can search on their site to make sure it's cataloged there. (If not,
    anyone can edit MusicBrainz---so consider adding the data yourself.)
 -  If the album in question is a multi-disc release, see the relevant
@@ -233,11 +285,11 @@ to see which version added the plugin. (You can type ``beet version`` to
 check which version of beets you have installed.)
 
 If you want to live on the bleeding edge and use the latest source
-version of beets, you can check out the source (see the next question).
+version of beets, you can check out the source (see :ref:`the relevant
+question <src>`).
 
 To see the beets documentation for your version (and avoid confusion
-with new features in trunk), select your version from the
-left-hand sidebar (or the buttons at the bottom of the window).
+with new features in trunk), select your version from the menu in the sidebar.
 
 
 .. _kill:
@@ -255,7 +307,7 @@ Also note that beets may take some time to quit after ^C is typed; it
 tries to clean up after itself briefly even when canceled.
 
 (For developers: this is because the UI thread is blocking on
-``raw_input`` and cannot be interrupted by the main thread, which is
+``input`` and cannot be interrupted by the main thread, which is
 trying to close all pipeline stages in the exception handler by setting
 a flag. There is no simple way to remedy this.)
 
@@ -265,8 +317,7 @@ a flag. There is no simple way to remedy this.)
 …not change my ID3 tags?
 ------------------------
 
-Beets writes `ID3v2.4 <http://www.id3.org/id3v2.4.0-structure>`__ tags by
-default.
+Beets writes `ID3v2.4`_ tags by default.
 Some software, including Windows (i.e., Windows Explorer and Windows
 Media Player) and `id3lib/id3v2 <http://id3v2.sourceforge.net/>`__,
 don't support v2.4 tags. When using 2.4-unaware software, it might look
@@ -276,6 +327,7 @@ To enable ID3v2.3 tags, enable the :ref:`id3v23` config option.
 
 
 .. _invalid:
+.. _ID3v2.4: https://id3.org/id3v2.4.0-structure
 
 …complain that a file is "unreadable"?
 --------------------------------------
@@ -285,15 +337,15 @@ it encounters files that *look* like music files (according to their
 extension) but seem to be broken. Most of the time, this is because the
 file is corrupted. To check whether the file is intact, try opening it
 in another media player (e.g.,
-`VLC <http://www.videolan.org/vlc/index.html>`__) to see whether it can
+`VLC <https://www.videolan.org/vlc/index.html>`__) to see whether it can
 read the file. You can also use specialized programs for checking file
 integrity---for example, type ``metaflac --list music.flac`` to check
 FLAC files.
 
 If beets still complains about a file that seems to be valid, `file a
-bug <https://github.com/sampsyo/beets/issues/new>`__ and we'll look into
+bug <https://github.com/beetbox/beets/issues/new>`__ and we'll look into
 it. There's always a possibility that there's a bug "upstream" in the
-`Mutagen <http://code.google.com/p/mutagen/>`__ library used by beets,
+`Mutagen <https://github.com/quodlibet/mutagen>`__ library used by beets,
 in which case we'll forward the bug to that project's tracker.
 
 
@@ -331,3 +383,17 @@ safely.
 Most notably, Windows forbids trailing dots, so a folder called "M.I.A."
 will be rewritten to "M.I.A\_" by default. Change the ``replace`` config
 if you don't want this behavior and don't need Windows-safe names.
+
+
+.. _pathq:
+
+…say "command not found"?
+-------------------------
+
+You need to put the ``beet`` program on your system's search path. If you
+installed using pip, the command ``pip show -f beets`` can show you where
+``beet`` was placed on your system. If you need help extending your ``$PATH``,
+try `this Super User answer`_.
+
+.. _this Super User answer: https://superuser.com/a/284361/4569
+.. _pip: https://pip.pypa.io/en/stable/

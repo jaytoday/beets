@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # This file is part of beets.
-# Copyright 2013, Adrian Sampson.
+# Copyright 2016, Adrian Sampson.
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -14,33 +14,27 @@
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
 
+
 import os
 import re
 import sys
+import unittest
 
-from _common import unittest
+pkgpath = os.path.dirname(os.path.dirname(os.path.realpath(__file__))) or ".."
+sys.path.insert(0, pkgpath)
 
-pkgpath = os.path.dirname(__file__) or '.'
-sys.path.append(pkgpath)
-os.chdir(pkgpath)
-
-# Make sure we use local version of beetsplug and not system namespaced version
-# for tests
-try:
-    del sys.modules["beetsplug"]
-except KeyError:
-    pass
 
 def suite():
     s = unittest.TestSuite()
     # Get the suite() of every module in this directory beginning with
     # "test_".
-    for fname in os.listdir(pkgpath):
-        match = re.match(r'(test_\S+)\.py$', fname)
+    for fname in os.listdir(os.path.join(pkgpath, "test")):
+        match = re.match(r"(test_\S+)\.py$", fname)
         if match:
             modname = match.group(1)
             s.addTest(__import__(modname).suite())
     return s
 
-if __name__ == '__main__':
-    unittest.main(defaultTest='suite')
+
+if __name__ == "__main__":
+    unittest.main(defaultTest="suite")

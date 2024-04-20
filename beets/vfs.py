@@ -1,5 +1,5 @@
 # This file is part of beets.
-# Copyright 2013, Adrian Sampson.
+# Copyright 2016, Adrian Sampson.
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -15,10 +15,13 @@
 """A simple utility for constructing filesystem-like trees from beets
 libraries.
 """
+
 from collections import namedtuple
+
 from beets import util
 
-Node = namedtuple('Node', ['files', 'dirs'])
+Node = namedtuple("Node", ["files", "dirs"])
+
 
 def _insert(node, path, itemid):
     """Insert an item into a virtual filesystem node."""
@@ -32,6 +35,7 @@ def _insert(node, path, itemid):
         if dirname not in node.dirs:
             node.dirs[dirname] = Node({}, {})
         _insert(node.dirs[dirname], rest, itemid)
+
 
 def libtree(lib):
     """Generates a filesystem-like directory tree for the files

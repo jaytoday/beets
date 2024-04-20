@@ -1,5 +1,5 @@
 # This file is part of beets.
-# Copyright 2013, Adrian Sampson.
+# Copyright 2016, Adrian Sampson.
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -13,32 +13,41 @@
 # included in all copies or substantial portions of the Software.
 
 """Tests for the virtual filesystem builder.."""
-import _common
-from _common import unittest
-from beets import library
-from beets import vfs
+
+import unittest
+
+from beets import library, vfs
+from beets.test import _common
+
 
 class VFSTest(_common.TestCase):
     def setUp(self):
-        super(VFSTest, self).setUp()
-        self.lib = library.Library(':memory:', path_formats=[
-            ('default', 'albums/$album/$title'),
-            ('singleton:true', 'tracks/$artist/$title'),
-        ])
+        super().setUp()
+        self.lib = library.Library(
+            ":memory:",
+            path_formats=[
+                ("default", "albums/$album/$title"),
+                ("singleton:true", "tracks/$artist/$title"),
+            ],
+        )
         self.lib.add(_common.item())
         self.lib.add_album([_common.item()])
         self.tree = vfs.libtree(self.lib)
 
     def test_singleton_item(self):
-        self.assertEqual(self.tree.dirs['tracks'].dirs['the artist'].
-                         files['the title'], 1)
+        self.assertEqual(
+            self.tree.dirs["tracks"].dirs["the artist"].files["the title"], 1
+        )
 
     def test_album_item(self):
-        self.assertEqual(self.tree.dirs['albums'].dirs['the album'].
-                         files['the title'], 2)
+        self.assertEqual(
+            self.tree.dirs["albums"].dirs["the album"].files["the title"], 2
+        )
+
 
 def suite():
     return unittest.TestLoader().loadTestsFromName(__name__)
 
-if __name__ == '__main__':
-    unittest.main(defaultTest='suite')
+
+if __name__ == "__main__":
+    unittest.main(defaultTest="suite")

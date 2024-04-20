@@ -26,7 +26,6 @@ ambient house
 ambient music
 americana
 anarcho punk
-anime music
 anti-folk
 apala
 ape haters
@@ -51,7 +50,6 @@ avant-garde music
 axé
 bac-bal
 bachata
-background music
 baggy
 baila
 baile funk
@@ -76,6 +74,7 @@ bangsawan
 bantowbol
 barbershop music
 barndance
+baroque
 baroque music
 baroque pop
 bass music
@@ -267,6 +266,7 @@ classic
 classic country
 classic female blues
 classic rock
+classical
 classical music
 classical music era
 clicks n cuts
@@ -277,6 +277,7 @@ coimbra fado
 coladeira
 colombianas
 combined rhythm
+comedy
 comedy rap
 comedy rock
 comic opera
@@ -290,6 +291,7 @@ congo
 conjunto
 contemporary christian
 contemporary christian music
+contemporary classical
 contemporary r&b
 contonbley
 contradanza
@@ -448,8 +450,9 @@ emo rap
 emocore
 emotronic
 enka
+epic doom metal
+epic metal
 eremwu eu
-essential rock
 ethereal pop
 ethereal wave
 euro
@@ -650,6 +653,7 @@ hua'er
 huasteco
 huayno
 hula
+humor
 humppa
 hunguhungu
 hyangak
@@ -967,6 +971,7 @@ minstrel show
 minuet
 mirolóyia
 modal jazz
+modern classical
 modern classical music
 modern laika
 modern rock
@@ -1021,6 +1026,7 @@ neo-medieval
 neo-prog
 neo-psychedelia
 neoclassical
+neoclassical metal
 neoclassical music
 neofolk
 neotraditional country
@@ -1047,7 +1053,6 @@ new york blues
 new york house
 newgrass
 nganja
-niche
 nightcore
 nintendocore
 nisiótika
@@ -1083,6 +1088,7 @@ opera
 operatic pop
 oratorio
 orchestra
+orchestral
 organ trio
 organic ambient
 organum
@@ -1173,8 +1179,10 @@ progressive folk
 progressive folk music
 progressive house
 progressive metal
+progressive power metal
 progressive rock
 progressive trance
+progressive thrash metal
 protopunk
 psych folk
 psychedelic music
@@ -1221,6 +1229,9 @@ rebetiko
 red dirt
 reel
 reggae
+reggae 110
+reggae bultrón
+reggae en español
 reggae fusion
 reggae highlife
 reggaefusion
@@ -1244,6 +1255,7 @@ rock opera
 rockabilly
 rocksteady
 rococo
+romantic flow
 romantic period in music
 rondeaux
 ronggeng
@@ -1255,6 +1267,7 @@ russian pop
 rímur
 sabar
 sacred harp
+sacred music
 sadcore
 saibara
 sakara
@@ -1310,7 +1323,6 @@ sica
 siguiriyas
 silat
 sinawi
-singer-songwriter
 situational
 ska
 ska punk
@@ -1338,7 +1350,6 @@ soul
 soul blues
 soul jazz
 soul music
-soundtrack
 southern gospel
 southern harmony
 southern hip hop
@@ -1358,6 +1369,7 @@ sprechgesang
 square dance
 squee
 st. louis blues
+stand-up
 steelband
 stoner metal
 stoner rock
@@ -1383,11 +1395,13 @@ swing
 swing music
 swingbeat
 sygyt
+symphonic
 symphonic black metal
 symphonic metal
 symphonic poem
 symphonic rock
 symphony
+synthcore
 synthpop
 synthpunk
 t'ong guitar
@@ -1420,6 +1434,7 @@ tejano
 tejano music
 tekno
 tembang sunda
+teutonic thrash metal
 texas blues
 thai pop
 thillana
@@ -1436,6 +1451,7 @@ toeshey
 togaku
 trad jazz
 traditional bluegrass
+traditional heavy metal
 traditional pop music
 trallalero
 trance
@@ -1443,7 +1459,6 @@ tribal house
 trikitixa
 trip hop
 trip rock
-trip-hop
 tropicalia
 tropicalismo
 tropipop
@@ -1472,7 +1487,6 @@ vaudeville
 venezuela
 verbunkos
 verismo
-video game music
 viking metal
 villanella
 virelai
